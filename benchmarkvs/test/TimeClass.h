@@ -18,6 +18,9 @@ namespace tmwrap {
 	const double MS_IN_HOUR = 3600000.0;
 	const double MS_IN_DAY = 86400000.0;
 
+
+
+
 	class Time
 	{
 		double milliseconds;
@@ -47,6 +50,11 @@ namespace tmwrap {
 		static const Time BAD_TIME;
 	};
 
+	Time Milliseconds(double ms);
+	Time Seconds(double s);
+	Time Minutes(double min);
+	Time Hours(double hrs);
+	Time Days(double days);
 
 	enum TimeIndices
 	{
