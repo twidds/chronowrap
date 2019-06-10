@@ -15,6 +15,7 @@ const char TIMESTAMP[] = "2018/07/14 22:14:35.243";
 void BM_Empty(benchmark::State &state)
 {
 	for (auto _ : state);
+	state.SetLabel("\n");
 }
 
 void BM_chrono_tstampcreate(benchmark::State &state)
@@ -80,13 +81,16 @@ void BM_chrono_tstampsubtract(benchmark::State &state)
 }
 
 
+
+//TimeClass Benchmarks
+
 void BM_timeclass_create(benchmark::State &state) {
 	tmwrap::Timestamp t;
 	for (auto _ : state)
 		t = tmwrap::Timestamp();
 
 	std::stringstream ss;
-	ss << t.isValid();
+	ss << t.isValid() << '\n';
 	state.SetLabel(ss.str());
 }
 
@@ -96,7 +100,7 @@ void BM_timeclass_fromstring(benchmark::State &state) {
 		t.SetTimeFromString(TIMESTAMP, TIMECLASSFORMAT);
 
 	std::stringstream ss;
-	ss << t.TimeToString();
+	ss << t.TimeToString() << '\n';
 	state.SetLabel(ss.str());
 }
 
@@ -108,26 +112,22 @@ void BM_timeclass_tostring(benchmark::State &state) {
 		res = t.TimeToString();
 
 	std::stringstream ss;
-	ss << res;
+	ss << res << '\n';
 	state.SetLabel(ss.str());
 }
 
 void BM_timeclass_tdiffcreate(benchmark::State &state) {
 	tmwrap::Time t;
 	for (auto _ : state)
+	{
 		benchmark::DoNotOptimize(t = tmwrap::Time(tmwrap::Seconds(state.range(0))));
+	}
+
 
 	std::stringstream ss;
-	ss << t.asSeconds();
+	ss << t.asSeconds() << '\n';
 	state.SetLabel(ss.str());
 }
-
-
-
-
-
-
-
 
 
 //Uncomment once we get the correct implementation for this in TimeClass
@@ -144,7 +144,6 @@ void BM_timeclass_tdiffcreate(benchmark::State &state) {
 //
 //	state.SetLabel(ss.str());
 //}
-
 
 BENCHMARK(BM_Empty);
 BENCHMARK(BM_chrono_tstampcreate);
