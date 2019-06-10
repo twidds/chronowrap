@@ -20,8 +20,8 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{6F4CACF9-EC21-4872-A967-B451990E7642}</ProjectGuid>
-    <RootNamespace>chronowrap</RootNamespace>
+    <ProjectGuid>{B7845DFB-878A-4E3C-8D8A-AC00D23EA8D7}</ProjectGuid>
+    <RootNamespace>chronobench</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -119,10 +119,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="include\chronowrap.hpp" />
+    <ClCompile Include="bench.cpp" />
+    <ClCompile Include="TimeClass\TimeClass.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="tests\main.cpp" />
+    <ClInclude Include="TimeClass\TimeClass.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
