@@ -203,7 +203,7 @@ inline int smallatoi(const char* const snum, int slen)
 {
 	if (slen > 10)
 		return 0;
-	const int powten[] = { 1, 10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000, 1000000000 };
+	static constexpr int powten[] = { 1, 10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000, 1000000000 };
 	int ret = 0;
 
 	for (int i = 0; i < slen; ++i)
@@ -252,9 +252,9 @@ inline bool timestamp::fromstring(const char* tstamp, const char* format, size_t
 	int ns = 0;
 	//I'd rather only go through one string at a time if possible
 	//Format string is used to get positions of different info in the time string
-	constexpr char symbols[] = "YMdHmsxf";
+	static constexpr char symbols[] = "YMdHmsxf";
 	constexpr int lowadjust = lowIndex(symbols, 'x');
-	constexpr char symlen[] = "42222239";
+	static constexpr char symlen[] = "42222239";
 
 	int * const tmpos[] = { &(t.tm_year), &(t.tm_mon), &(t.tm_mday), &(t.tm_hour), &(t.tm_min), &(t.tm_sec), &ms, &ns };
 	//Buffer to use for int conversions:
